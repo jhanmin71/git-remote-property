@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h5 class="card-title mb-3">부동산 물건 엑셀 업로드 (1단계)</h5>
+        <form
+          method="post"
+          action="/upload/excel"
+          enctype="multipart/form-data"
+        >
+          <div class="mb-3">
+            <label for="file" class="form-label">엑셀 파일 선택 (.xlsx)</label>
+            <input
+              class="form-control"
+              type="file"
+              id="file"
+              name="file"
+              accept=".xlsx,.xls"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">업로드 및 기본 분석</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

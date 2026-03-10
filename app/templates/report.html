@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h4 class="mb-3">기본 분석 결과</h4>
+<p class="text-muted">파일: {{ filename }}</p>
+
+{% if summary_by_type %}
+<h5 class="mt-4">물건유형별 요약</h5>
+<div class="table-responsive">
+  <table class="table table-sm table-bordered align-middle">
+    <thead class="table-light">
+      <tr>
+        {% for key in summary_by_type[0].keys() %}
+        <th>{{ key }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in summary_by_type %}
+      <tr>
+        {% for value in row.values() %}
+        <td>{{ value }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+
+{% if summary_by_region %}
+<h5 class="mt-4">지역 기준 요약</h5>
+<div class="table-responsive">
+  <table class="table table-sm table-bordered align-middle">
+    <thead class="table-light">
+      <tr>
+        {% for key in summary_by_region[0].keys() %}
+        <th>{{ key }}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for row in summary_by_region %}
+      <tr>
+        {% for value in row.values() %}
+        <td>{{ value }}</td>
+        {% endfor %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endif %}
+
+{% if not summary_by_type and not summary_by_region %}
+<div class="alert alert-warning mt-3">
+  요약할 수 있는 컬럼이 부족합니다. 엑셀 컬럼명을 다시 한 번 확인해 주세요.
+</div>
+{% endif %}
+
+<a href="/" class="btn btn-secondary mt-4">다른 파일 분석하기</a>
+{% endblock %}
+
